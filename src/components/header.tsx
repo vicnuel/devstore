@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Search } from "lucide-react";
+
 import Image from "next/image";
 import { CardWidget } from "./card/card-widget";
+import { SearchForm } from "./search-form";
 
 export function Header() {
   return (
@@ -10,15 +11,7 @@ export function Header() {
         <Link href="/" className="text-2xl font-extrabold text-white">
           devstore
         </Link>
-
-        <form className="flex w-[320px] item-center gap-3 rounded-full bg-zinc-900 px-5 py-3 ring-zinc-700">
-          <Search className="w-6 h-6v text-zinc-500" />
-          <input
-            type="text"
-            placeholder="Buscar produtos"
-            className="w-full bg-transparent text-white text-sm placeholder-zinc-500 focus:outline-none"
-          />
-        </form>
+        <SearchForm />
       </div>
       <div className="flex items-center gap-4">
         <CardWidget />
