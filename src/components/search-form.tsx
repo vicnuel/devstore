@@ -1,8 +1,9 @@
 "use client";
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export function SearchForm() {
+function SearchFormContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -35,5 +36,13 @@ export function SearchForm() {
         className="w-full bg-transparent text-white text-sm placeholder-zinc-500 focus:outline-none"
       />
     </form>
+  );
+}
+
+export function SearchForm() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchFormContent />
+    </Suspense>
   );
 }
