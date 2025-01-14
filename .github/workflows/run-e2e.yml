@@ -1,0 +1,31 @@
+name: Cypress Tests
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Install Node.Js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        env:
+          NEXT_PUBLIC_API_URL: https://api-devstore-five.vercel.app
+          APP_URL: http://localhost:3000
+        with:
+          build: npm run build
+          start: npm start
